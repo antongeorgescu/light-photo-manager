@@ -1,0 +1,20 @@
+{
+  "paths": [
+    {
+      "type": "src",
+      "dir": "C:\\Users\\ag4488\\.pylint.d\\Pictures"
+    },
+    {
+      "type": "src",
+      "dir": "C:\\Users\\ag4488\\blah-blah"
+    },
+    {
+      "type": "dest",
+      "dir": "C:\\Test\\Light-Photo-Manager"
+    },
+    {
+      "type": "dest",
+      "dir": "C:\\Test\\tjago"
+    }
+  ]
+}
