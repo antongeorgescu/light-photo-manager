@@ -13,14 +13,6 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-# Ignore everything but the Publish folder
-!Publish/*.exe
-!Publish/*.json
-!Publish/*.deps.json
-!Publish/*.dll
-!Publish/*.pdb
-!Publish/*.runtimeconfig
-
 # Mono auto generated files
 mono_crash.*
 
@@ -394,3 +386,11 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Ignore everything but the Publish folder
+!Publish/*.exe
+!Publish/*.json
+!Publish/*.deps.json
+!Publish/*.dll
+!Publish/*.pdb
+!Publish/*.runtimeconfig

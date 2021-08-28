@@ -31,6 +31,8 @@ namespace Light_Photo_Manager
 
             // extract destination paths
             List<string> destPaths = new List<string>();
+            bool existOneSource = false;
+            bool existOneDest = false;
             foreach (var sett in setts.Paths)
             {
                 // check if directory exists
@@ -43,10 +45,30 @@ namespace Light_Photo_Manager
                     sett.Exists = false;
                 }
                 else
+                {
                     sett.Exists = true;
+                    if (sett.Type == "src") existOneSource = true;
+                    if (sett.Type == "dest") existOneDest = true;
+                }
 
                 if (sett.Type == "dest")
                     destPaths.Add(sett.Dir);
+            }
+
+            if (!existOneDest)
+                {
+                Console.WriteLine($"[{DateTime.Now}] Process aborted as there are no valid destination folders...");
+                Console.WriteLine("Press any key to close program.");
+                Console.ReadLine();
+                return;
+            }
+
+            if (!existOneSource)
+            {
+                Console.WriteLine($"[{DateTime.Now}] Process aborted as there are no valid source folders...");
+                Console.WriteLine("Press any key to close program.");
+                Console.ReadLine();
+                return;
             }
 
             // process the source paths
@@ -91,13 +113,13 @@ namespace Light_Photo_Manager
                     {
                         Console.WriteLine($"[{DateTime.Now}] Error: {ex.Message}");
                     }
-                    
-
 
                 }
             }
 
+            Console.WriteLine("Press any key to close program.");
             Console.ReadLine();
+
         }
     }
 }
