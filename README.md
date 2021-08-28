@@ -2,7 +2,8 @@
 A basic photo manager that organizes automatically your photos
 
 ## Publish
-Use the command below to create a self-contained package
+Use the command below to create a self-contained package <br/>
+
 dotnet publish [<PROJECT>|<SOLUTION>] [-a|--arch <ARCHITECTURE>] <br/>
 &nbsp;&nbsp;[-c|--configuration <CONFIGURATION>] <br/>
 &nbsp;&nbsp;[-f|--framework <FRAMEWORK>] [--force] [--interactive] <br/>
@@ -15,8 +16,8 @@ dotnet publish [<PROJECT>|<SOLUTION>] [-a|--arch <ARCHITECTURE>] <br/>
 
 **dotnet publish --self-contained true --runtime win-x86** <br/>
 
-Zip to source the package to publish.package.rar<br/>
-Unzip the package to destination 
+1) Zip to source the package to publish.package.rar<br/>
+2) Unzip the package to destination 
 
 
 
