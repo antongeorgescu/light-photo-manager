@@ -3,7 +3,7 @@ A basic photo manager that organizes automatically your photos. The photos are d
 
 ## Dependencies
 
-&ensp;&ensp;Microsoft .NET Core 2.1
+&ensp;&ensp;Microsoft .NET Core 2.1 <br/>
 &ensp;&ensp;Newtonsoft.Json 13.0
 
 
