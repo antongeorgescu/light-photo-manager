@@ -1,5 +1,5 @@
 # Light Photo Manager
-A basic photo manager that organizes automatically your photos
+A basic photo manager that organizes automatically your photos. The photos are distributed in year/season based on the capture date.
 
 ## Publish
 Use the command and options below to create a self-contained package <br/>
