@@ -96,12 +96,12 @@ namespace Light_Photo_Manager
                         foreach (var file in files)
                         {
                             FileInfo fi = new FileInfo(file);
-                            var created = fi.CreationTime;
-                            var lastmodified = fi.LastWriteTime;
+                            //var created = fi.CreationTime;
+                            var captured = fi.LastWriteTime;
 
                             // get Year of file creation
-                            var year = created.Year;
-                            var season = GetSeason(created.Month);
+                            var year = captured.Year;
+                            var season = GetSeason(captured.Month);
                             
                             // copy the file
                             foreach (var path in destPaths) {
