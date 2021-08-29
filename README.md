@@ -1,5 +1,5 @@
 # Light Photo Manager
-A basic photo manager that organizes automatically your photos. The photos are distributed in year/season based on the capture date.
+A basic photo manager that organizes automatically your photos. The photos are distributed in year/season based on the capture date. One or multiple source folders will be processed and their combined photos will be copied in as many destination folders as specified. Both source and destinations paths are set in **configuration.json** file, which is deployed in the same installation folder with the executable. 
 
 ## Publish
 Use the command and options below to create a self-contained package <br/>
