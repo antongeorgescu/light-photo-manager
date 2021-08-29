@@ -83,6 +83,7 @@ namespace Light_Photo_Manager
 
             // process the source paths
             Console.WriteLine($"[{DateTime.Now}] Light_Photo_Manager started to parse the source folders...");
+            int photoCount = 0;
             foreach (var sett in setts.Paths)
             {
                 if (!sett.Exists) continue;
@@ -91,7 +92,7 @@ namespace Light_Photo_Manager
                     {
                         string[] files = Directory.GetFiles(sett.Dir, "*", SearchOption.AllDirectories);
                         
-                        Console.WriteLine($"[{DateTime.Now}] {files.Length} files are getting processed in source folder {sett.Dir}...");
+                        Console.WriteLine($"[{DateTime.Now}] {files.Length} files are getting processed in source folder {sett.Dir}.");
                         foreach (var file in files)
                         {
                             FileInfo fi = new FileInfo(file);
@@ -118,6 +119,10 @@ namespace Light_Photo_Manager
                                     Directory.CreateDirectory($"{path}/{year}/{season}");
                                 // copy the file in respective subfolder of destination path
                                 File.Copy(file, $"{path}//{year}//{season}//{fi.Name}",true);
+                                photoCount++;
+                                if (photoCount % 500 == 0 )
+                                    Console.WriteLine($"[{DateTime.Now}] {photoCount} files processed so far...");
+
                             }
                         }
                         Console.WriteLine($"[{DateTime.Now}] Source folder {sett.Dir} has been fully processed.");
@@ -130,7 +135,7 @@ namespace Light_Photo_Manager
 
                 }
             }
-
+            Console.WriteLine($"[{DateTime.Now}] {photoCount} files processed in total.");
             Console.WriteLine("Press any key to close program.");
             Console.ReadLine();
 
