@@ -23,10 +23,20 @@ namespace Light_Photo_Manager
         static void Main(string[] args)
         {
             RootObject setts;
-            using (StreamReader r = new StreamReader("configuration.json"))
+            try
             {
-                string json = r.ReadToEnd();
-                setts = JsonConvert.DeserializeObject<RootObject>(json);
+                using (StreamReader r = new StreamReader("configuration.json"))
+                {
+                    string json = r.ReadToEnd();
+                    setts = JsonConvert.DeserializeObject<RootObject>(json);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"[{DateTime.Now}] Error reading configuration file: {ex.Message}.");
+                Console.WriteLine("Press any key to close program.");
+                Console.ReadLine();
+                return;
             }
 
             // extract destination paths
@@ -90,7 +100,8 @@ namespace Light_Photo_Manager
 
                             // get Year of file creation
                             var year = created.Year;
-
+                            var season = GetSeason(created.Month);
+                            
                             // copy the file
                             foreach (var path in destPaths) {
                                 // if destination directory does not exist, display error and exit  the for loop
@@ -102,8 +113,11 @@ namespace Light_Photo_Manager
                                 // check if Year existed as subfolder in destination folders; if not create it
                                 if (!Directory.Exists($"{path}/{year}"))
                                     Directory.CreateDirectory($"{path}/{year}");
+                                // check if Season existed as subfolder in destination folders; if not create it
+                                if (!Directory.Exists($"{path}/{year}/{season}"))
+                                    Directory.CreateDirectory($"{path}/{year}/{season}");
                                 // copy the file in respective subfolder of destination path
-                                File.Copy(file, $"{path}//{year}//{fi.Name}",true);
+                                File.Copy(file, $"{path}//{year}//{season}//{fi.Name}",true);
                             }
                         }
                         Console.WriteLine($"[{DateTime.Now}] Source folder {sett.Dir} has been fully processed.");
@@ -120,6 +134,53 @@ namespace Light_Photo_Manager
             Console.WriteLine("Press any key to close program.");
             Console.ReadLine();
 
+        }
+
+        static string GetSeason(int month)
+        {
+            string season = string.Empty; ;
+            switch (month) {
+                case 1:
+                    season = "Winter";
+                    break;
+                case 2:
+                    season = "Winter";
+                    break;
+                case 3:
+                    season = "Spring";
+                    break;
+                case 4:
+                    season = "Spring";
+                    break;
+                case 5:
+                    season = "Spring";
+                    break;
+                case 6:
+                    season = "Summer";
+                    break;
+                case 7:
+                    season = "Summer";
+                    break;
+                case 8:
+                    season = "Summer";
+                    break;
+                case 9:
+                    season = "Fall";
+                    break;
+                case 10:
+                    season = "Fall";
+                    break;
+                case 11:
+                    season = "Fall";
+                    break;
+                case 12:
+                    season = "Winter";
+                    break;
+                default:
+                    season = "Unspecified";
+                    break;
+            }
+            return season;
         }
     }
 }
