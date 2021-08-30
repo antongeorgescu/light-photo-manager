@@ -5,7 +5,6 @@ using System.IO;
 
 namespace Light_Photo_Manager
 {
-    
     public class RootObject
     {
         public Path[] Paths { get; set; }
@@ -102,7 +101,8 @@ namespace Light_Photo_Manager
                             // get Year of file creation
                             var year = captured.Year;
                             var season = GetSeason(captured.Month);
-                            
+                            var ext = fi.Extension.Replace(".","").ToUpper();
+
                             // copy the file
                             foreach (var path in destPaths) {
                                 // if destination directory does not exist, display error and exit  the for loop
@@ -117,8 +117,12 @@ namespace Light_Photo_Manager
                                 // check if Season existed as subfolder in destination folders; if not create it
                                 if (!Directory.Exists($"{path}/{year}/{season}"))
                                     Directory.CreateDirectory($"{path}/{year}/{season}");
+                                // check if Extension existed as subfolder in destination folders; if not create it
+                                if (!Directory.Exists($"{path}/{year}/{season}/{GetCaptureType(ext)}"))
+                                    Directory.CreateDirectory($"{path}/{year}/{season}/{GetCaptureType(ext)}");
+
                                 // copy the file in respective subfolder of destination path
-                                File.Copy(file, $"{path}//{year}//{season}//{fi.Name}",true);
+                                File.Copy(file, $"{path}//{year}//{season}//{GetCaptureType(ext)}//{fi.Name}",true);
                                 photoCount++;
                                 if (photoCount % 500 == 0 )
                                     Console.WriteLine($"[{DateTime.Now}] {photoCount} files processed so far...");
@@ -186,6 +190,24 @@ namespace Light_Photo_Manager
                     break;
             }
             return season;
+        }
+
+        static string GetCaptureType(string ext)
+        {
+            string[] VIDEOEXT = { "MOV" };
+            string[] PHOTOEXT = { "JPEG", "JPG", "PNG" };
+            string[] SPECIALEXT = { "HEIC" };
+
+            string type = string.Empty;
+
+            if (Array.IndexOf(VIDEOEXT, ext.ToUpper()) > -1)
+                type = "Videos";
+            else if (Array.IndexOf(PHOTOEXT, ext.ToUpper()) > -1)
+                type = "Pictures";
+            else if (Array.IndexOf(SPECIALEXT, ext.ToUpper()) > -1)
+                type = "Special";
+            
+            return type;
         }
     }
 }
