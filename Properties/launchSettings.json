@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Light-Photo-Manager": {
+      "commandName": "Project",
+      "commandLineArgs": "D2 show"
+    }
+  }
+}
