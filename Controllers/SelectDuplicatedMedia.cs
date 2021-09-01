@@ -10,7 +10,7 @@ namespace Light_Photo_Manager.Controllers
 {
     internal class SelectDuplicatedMedia
     {
-        RootObject setts = null;
+        RootConfigObject setts = null;
 
         public SelectDuplicatedMedia()
         {
@@ -49,8 +49,9 @@ namespace Light_Photo_Manager.Controllers
             pageOutput<string, string>(queryDupNames);
         }
 
-        internal void QueryDuplicates2(bool showFiles = true)
+        internal void QueryDuplicates2(ref string[] extensions,bool showFiles = true)
         {
+
             if (setts == null)
                 return;
 
@@ -78,9 +79,17 @@ namespace Light_Photo_Manager.Controllers
             var queryDupFiles =
                 from file in fileList
                 group file.FullName.Substring(charsToSkip) by
-                    new PortableKey { Name = file.Name, LastWriteTime = file.LastWriteTime, Length = file.Length } into fileGroup
+                    new PortableKey { Name = file.Name, LastWriteTime = file.LastWriteTime, Length = file.Length, Ext = file.Extension} into fileGroup
                 where fileGroup.Count() > 1
                 select fileGroup;
+
+            var exts = fileList.Select(x => x.Extension.Replace(".",string.Empty).ToUpper()).Distinct().ToArray<string>();
+            var strexts = string.Empty;
+            exts.ToList().ForEach(x => strexts = strexts + x + ",");
+
+            strexts = strexts.Remove(strexts.Length - 1, 1);
+
+            Console.WriteLine($"[{DateTime.Now}] Following extensions found: {strexts}");
 
             var list = queryDupFiles.ToList();
 
@@ -91,12 +100,8 @@ namespace Light_Photo_Manager.Controllers
             if (showFiles)
                 pageOutput<PortableKey, string>(queryDupFiles);
 
-            Console.WriteLine("Press any key to close the program...");
-            ConsoleKey key = Console.ReadKey().Key;
         }
-
         
-
         // A generic method to page the output of the QueryDuplications methods  
         // Here the type of the group must be specified explicitly. "var" cannot  
         // be used in method signatures. This method does not display more than one  

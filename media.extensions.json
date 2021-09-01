@@ -1,0 +1,16 @@
+{
+  "extensions": [
+    {
+      "type": "Videos",
+      "extension": "MOV"
+    },
+    {
+      "type": "Pictures",
+      "extension": "JPEG,JPG,PNG"
+    },
+    {
+      "type": "Special",
+      "extension": "HEIC"
+    }
+  ]
+}

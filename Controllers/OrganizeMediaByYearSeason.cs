@@ -46,16 +46,16 @@ namespace Light_Photo_Manager.Controllers
             if (!existOneDest)
             {
                 Console.WriteLine($"[{DateTime.Now}] Process aborted as there are no valid destination folders...");
-                Console.WriteLine("Press any key to close program.");
-                Console.ReadLine();
+                //Console.WriteLine("Press any key to close program.");
+                //Console.ReadLine();
                 return;
             }
 
             if (!existOneSource)
             {
                 Console.WriteLine($"[{DateTime.Now}] Process aborted as there are no valid source folders...");
-                Console.WriteLine("Press any key to close program.");
-                Console.ReadLine();
+                //Console.WriteLine("Press any key to close program.");
+                //Console.ReadLine();
                 return;
             }
 
@@ -121,8 +121,8 @@ namespace Light_Photo_Manager.Controllers
                 }
             }
             Console.WriteLine($"[{DateTime.Now}] {photoCount} files processed in total.");
-            Console.WriteLine("Press any key to close program.");
-            Console.ReadLine();
+            //Console.WriteLine("Press any key to close program.");
+            //Console.ReadLine();
 
         }
 

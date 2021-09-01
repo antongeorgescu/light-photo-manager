@@ -7,35 +7,34 @@ using Newtonsoft.Json;
 
 namespace Light_Photo_Manager.Helpers
 {
-    public class RootConfigObject
+    public class RootExtObject
     {
-        public Path[] Paths { get; set; }
+        public ExtensionObject[] Extensions { get; set; }
     }
 
-    public class Path
+    public class ExtensionObject
     {
         public string Type { get; set; }
-        public string Dir { get; set; }
-        public bool Exists { get; set; }
+        public string Extension { get; set; }
     }
 
-    public class ReadConfiguration
+    public class ReadMediaExtensions
     {
-        public RootConfigObject GetPaths()
+        public RootExtObject GetAppExtensions()
         {
-            RootConfigObject setts;
+            RootExtObject setts;
             try
             {
-                using (StreamReader r = new StreamReader("configuration.json"))
+                using (StreamReader r = new StreamReader("media.extensions.json"))
                 {
                     string json = r.ReadToEnd();
-                    setts = JsonConvert.DeserializeObject<RootConfigObject>(json);
+                    setts = JsonConvert.DeserializeObject<RootExtObject>(json);
                 }
                 return setts;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[{DateTime.Now}] Error reading configuration file: {ex.Message}.");
+                Console.WriteLine($"[{DateTime.Now}] Error reading media.extensions file: {ex.Message}.");
                 Console.WriteLine("Press any key to close program.");
                 Console.ReadLine();
                 return null;

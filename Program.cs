@@ -24,12 +24,19 @@ namespace Light_Photo_Manager
                     break;
                 case "D2":
                     var dups2 = new SelectDuplicatedMedia();
+                    string[] exts = new string[] { }; 
                     if (args.Length == 1)
-                        dups2.QueryDuplicates2(false);
+                        dups2.QueryDuplicates2(ref exts, false);
                     if ((args.Length > 1) && (args[1] == "show"))
-                        dups2.QueryDuplicates2();
+                        dups2.QueryDuplicates2(ref exts);
+                    break;
+                case "X":
+                    var manx = new ManageMediaExtensions();
+                    manx.QueryExtensions();
                     break;
             }
+            Console.WriteLine("Press any key to close the program...");
+            ConsoleKey key = Console.ReadKey().Key;
 
         }
     }

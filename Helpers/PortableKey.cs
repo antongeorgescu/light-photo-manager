@@ -12,6 +12,7 @@ namespace Light_Photo_Manager.Helpers
         public string Name { get; set; }
         public DateTime LastWriteTime { get; set; }
         public long Length { get; set; }
+        public string Ext { get; set; }
 
         public override bool Equals(object obj)
         {
