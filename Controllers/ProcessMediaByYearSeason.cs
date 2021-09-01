@@ -7,7 +7,7 @@ using Light_Photo_Manager.Helpers;
 
 namespace Light_Photo_Manager.Controllers
 {
-    internal class OrganizeMediaByYearSeason
+    internal class ProcessMediaByYearSeason
     {
         internal void Execute()
         {

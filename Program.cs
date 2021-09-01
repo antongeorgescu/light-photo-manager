@@ -14,8 +14,8 @@ namespace Light_Photo_Manager
         {
             switch (args[0].ToUpper())
             {
-                case "O":
-                    var orgmedia = new OrganizeMediaByYearSeason();
+                case "P":
+                    var orgmedia = new ProcessMediaByYearSeason();
                     orgmedia.Execute();
                     break;
                 case "D":

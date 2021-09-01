@@ -2,7 +2,7 @@
   "extensions": [
     {
       "type": "Videos",
-      "extension": "MOV"
+      "extension": "MOV,3GP,MP4,MPG,WAV,WMV"
     },
     {
       "type": "Pictures",
@@ -10,7 +10,7 @@
     },
     {
       "type": "Special",
-      "extension": "HEIC"
+      "extension": "HEIC,AMR,DNG"
     }
   ]
 }
