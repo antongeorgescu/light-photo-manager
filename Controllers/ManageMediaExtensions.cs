@@ -62,7 +62,7 @@ namespace Light_Photo_Manager.Controllers
                 Console.WriteLine($"[{DateTime.Now}] Following extensions found in the source folders: {strexts}");
 
                 var mext = new ReadMediaExtensions();
-                var appexts = mext.GetAppExtensions();
+                var appexts = mext.Extensions;
                 var strappexts = string.Empty;
 
                 var ordappexts = appexts.Extensions.ToList().OrderBy(x => x.Extension).Select(x => x).ToList();

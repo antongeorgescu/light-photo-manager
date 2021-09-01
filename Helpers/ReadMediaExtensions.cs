@@ -20,25 +20,47 @@ namespace Light_Photo_Manager.Helpers
 
     public class ReadMediaExtensions
     {
-        public RootExtObject GetAppExtensions()
+        RootExtObject setts;
+
+        public ReadMediaExtensions()
         {
-            RootExtObject setts;
+            
             try
             {
                 using (StreamReader r = new StreamReader("media.extensions.json"))
                 {
                     string json = r.ReadToEnd();
-                    setts = JsonConvert.DeserializeObject<RootExtObject>(json);
+                    this.setts = JsonConvert.DeserializeObject<RootExtObject>(json);
                 }
-                return setts;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"[{DateTime.Now}] Error reading media.extensions file: {ex.Message}.");
                 Console.WriteLine("Press any key to close program.");
                 Console.ReadLine();
-                return null;
+                this.setts = null;
             }
+        }
+
+        public RootExtObject Extensions
+        {
+            get
+            {
+                return setts;
+            }
+        }
+        
+        public string GetCaptureType(string ext)
+        {
+            string rettype = string.Empty;
+            foreach (var e in this.setts.Extensions)
+                if (e.Extension.ToUpper() == ext.ToUpper())
+                {
+                    rettype = e.Type;
+                    break;
+                }
+
+            return rettype;
         }
     }
 }
