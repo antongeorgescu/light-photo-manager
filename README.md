@@ -1,6 +1,16 @@
 # Light Photo Manager
 A basic photo manager that organizes automatically your photos. The photos are distributed in year/season based on the capture date. One or multiple source folders will be processed and their combined photos will be copied in as many destination folders as specified. Both source and destinations paths are set in **configuration.json** file, which is deployed in the same installation folder with the executable. 
 
+The media extensions that are getting processed are listed in **media.extensions.json** file and can be extended anytime.
+
+## Functionality ##
+**LightPhotoManager.exe** executable can run in command line mode, with a bunch of options:
+ 
+* **LightPhotoManager.exe X** - extracts the set of media extensions from the source folders and compares with the application extensions; if need be the application extensions can be updated in **media.extensions.json** file<br/>
+* **LightPhotoManager.exe D** - de-duplicates the files in a tree folder structure, by file name only<br/>
+* **LightPhotoManager.exe D2** - de-duplicates the files in a tree folder structure, by file name, modified date, size and extension<br/>
+* **LightPhotoManager.exe P** - processes (organizes) the media from a source tree folder structure to a bunch of destination folders, all configured in **configuration.json** file<br/>
+
 ## Dependencies
 
 &ensp;&ensp;Microsoft .NET Core 2.1 <br/>
